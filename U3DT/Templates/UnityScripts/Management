@@ -1,0 +1,18 @@
+using System;
+using U3DT.Utils;
+using UnityEngine;
+using System.Collections;
+using U3DT.Utils.ToolKit;
+using System.Collections.Generic;
+
+public class Management {
+
+    //Code Generated from U3DT Player Template; https://github.com/Anton-Stechman/U3DTools/tree/main
+    private void Awake() {
+        // execute on awake (before game start)
+    }
+
+    private void Start() {
+        // execute on game start
+    }
+}

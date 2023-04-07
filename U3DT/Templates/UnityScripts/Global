@@ -1,0 +1,12 @@
+using System;
+using U3DT.Utils;
+using UnityEngine;
+using System.Collections;
+using U3DT.Utils.ToolKit;
+using System.Collections.Generic;
+
+public static class Global {
+    public static void Initialize() {
+        
+    }
+}

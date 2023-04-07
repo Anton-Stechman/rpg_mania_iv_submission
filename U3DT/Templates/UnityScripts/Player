@@ -1,0 +1,35 @@
+using System;
+using UnityEngine;
+using System.Collections;
+using U3DT.Utils.ToolKit;
+using U3DT.Library.Character;
+using System.Collections.Generic;
+
+public class Player {
+    [SerializeField][Range(0,10)] private float MoveSpeed = 5.00f;
+    [SerializeField][Range(0,10)] private float MaxSpeed = 10.00f;
+    [SerializeField][Range(0,10)] private float Mass = 2.00f;
+    private Motion control;
+
+    //Code Generated from U3DT Player Template; https://github.com/Anton-Stechman/U3DTools/tree/main
+    private void Awake() {
+        // execute on awake (before game start)
+    }
+
+    private void Start() {
+        // execute on game start
+        control = new Motion(MoveSpeed, MaxSpeed, Mass)
+    }
+
+    private void FixedUpdate() {
+        // physics
+    }
+
+    private void Update() {
+        // Other
+    }
+
+    private void LateUpdate() {
+        // camera
+    }
+}
