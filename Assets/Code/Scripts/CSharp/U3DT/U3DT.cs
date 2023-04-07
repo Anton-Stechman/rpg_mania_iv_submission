@@ -111,6 +111,13 @@ namespace U3DT {
                 }
                 return value;
             }
+            public Vector3 AddVectors(Vector3[] args) {
+                Vector3 ReturnVector = new Vector3();
+                for(int i = 0; i < args.Length; i++) {
+                    ReturnVector += args[i];
+                }
+                return ReturnVector;
+            }
         }
     }
 }

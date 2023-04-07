@@ -59,7 +59,7 @@ public class PlayerControls {
         UpdateControlsConfig();
     }
     
-    private void UpdateControlsConfig() {
+    public void UpdateControlsConfig() {
         PlayerControlsConfig.SetKeyBindForward(Forward);
         PlayerControlsConfig.SetKeyBindBackward(Backward);
         PlayerControlsConfig.SetKeyBindLeft(Left);
