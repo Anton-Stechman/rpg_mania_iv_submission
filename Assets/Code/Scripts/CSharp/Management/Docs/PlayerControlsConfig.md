@@ -11,6 +11,10 @@ _public static class used to store keybindings for player movement.<br/>Also con
 ```
 [SerializeField] private PlayerControls controls = new PlayerControls();
 ```
+
+_example:_<br/>
+![image](.\PlayerControlsScreenShot.png)
+
 ___
 
 ### Developer

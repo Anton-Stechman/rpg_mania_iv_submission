@@ -1,7 +1,7 @@
 using System;
 using System.Collections;
 using UnityEngine;
-public namespace U3DT {
+namespace U3DT {
     namespace Library {
         namespace Character {
             [System.Serializable] 
@@ -49,7 +49,7 @@ public namespace U3DT {
         }
         public class ToolKit {
             public string Concatenate(string[] args, string delimiter = "\\") {
-                result = string.Empty();
+                string result = String.Empty;
                 for (int i = 0; i < args.Length; i++) {
                     if (i < args.Length) {
                         result += args[i] + delimiter; 
@@ -60,7 +60,7 @@ public namespace U3DT {
                 return result;
             }
             public string Concatenate(char[] args, string delimiter = "\\") {
-                result = string.Empty();
+                string result = String.Empty;
                 for(int i = 0; i < args.Length; i++) {
                     if (i < args.Length) {
                         result += args[i] + delimiter; 
@@ -103,7 +103,7 @@ public namespace U3DT {
                 return false;
             }
             public int Max(int[] args) {
-                value = null;
+                int value = new int();
                 foreach(int arg in args) {
                     if(arg > value) {
                         value = arg;

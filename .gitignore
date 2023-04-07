@@ -61,3 +61,6 @@ crashlytics-build.properties
 # Dev Profile
 dev_profile
 
+# Ignore Docs.meta files
+*Docs.meta
+*.md.meta

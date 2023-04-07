@@ -2,7 +2,7 @@ using System;
 using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
-using U3DT.Utils.ToolKit;
+using U3DT.Utils;
 
 public static class PlayerControlsConfig {
     
@@ -35,7 +35,7 @@ public static class PlayerControlsConfig {
     public static KeyCode GetKeyBindLeft() {
         return Left;
     }
-    public void GetKeyBindRight() {
+    public static KeyCode GetKeyBindRight() {
         return Right;
     }
 }
