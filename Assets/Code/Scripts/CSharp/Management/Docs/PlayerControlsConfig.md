@@ -13,7 +13,7 @@ _public static class used to store keybindings for player movement.<br/>Also con
 ```
 
 _example:_<br/>
-![image](.\PlayerControlsScreenShot.png)
+![image](.\Assets\Code\Scripts\CSharp\Management\Docs\PlayerControlsScreenShot.png)
 
 ___
 
