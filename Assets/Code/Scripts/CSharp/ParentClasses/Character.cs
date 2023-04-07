@@ -24,7 +24,7 @@ public class Character : MonoBehaviour {
             controller = gameObject.GetComponent<CharacterController>();
         }
         catch {
-            controller = gameObject.GetComponent<CharacterController>();
+            controller = gameObject.AddComponent<CharacterController>();
         }
     }
 
