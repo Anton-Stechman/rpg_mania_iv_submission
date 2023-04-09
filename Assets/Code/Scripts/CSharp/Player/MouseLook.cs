@@ -33,7 +33,7 @@ public class MouseLook {
 
         PlayerObject = player;
         PlayerTransform = PlayerObject.transform;
-        FollowObject.transform.position = SetPosition();
+        FollowObject.transform.position = SetTargetPosition();
     }
 
     private void CheckSettings() {
@@ -48,8 +48,8 @@ public class MouseLook {
         CheckSettings();
         CurrentY = GetAxis('y');
         Vector3 CameraCurrentPos = PlayerCamera.position;
-        // FollowObject.transform.position = SetPosition();
-        FollowObject.transform.localPosition = CameraPosition.GetOffsetPosition();
+        // FollowObject.transform.position = SetTargetPosition();
+        FollowObject.transform.localPosition = CameraPosition.GetOffSetTargetPosition();
         PlayerCamera.position = Vector3.Lerp(CameraCurrentPos, FollowObject.transform.position, CameraFollowDampner);
         CameraVerticalRotation();
     }
@@ -72,10 +72,13 @@ public class MouseLook {
             }
         }
     }
-    private Vector3 SetPosition(Transform target = null) {
-        return PlayerTransform.position + CameraPosition.GetOffsetPosition();
+    private Vector3 SetTargetPosition(Transform target = null) {
+        if(target is null) {
+            target = PlayerTransform;
+        }
+        return target.position + CameraPosition.GetOffSetTargetPosition();
     }
-    private Vector3 GetPosition(Transform target = null) {
+    private Vector3 GetTargetPosition(Transform target = null) {
         if(target is null) {
             target = PlayerTransform;
         }
@@ -85,7 +88,7 @@ public class MouseLook {
         //https://answers.unity.com/questions/862380/how-to-slow-down-transformlookat.html
         PlayerCamera.Rotate(PlayerCamera.right * CurrentY * Time.deltaTime);
         if(CameraPosition.GetLookAtPlayer()) {
-            PlayerCamera.LookAt(GetPosition());
+            PlayerCamera.LookAt(GetTargetPosition());
         }
     }
 }
@@ -93,12 +96,12 @@ public class MouseLook {
 public class CameraFollow {
     [SerializeField] private bool LookAtPlayer = true;
 
-    [SerializeField] private Vector3 OffsetPosition = new Vector3(0, 2, -4);
+    [SerializeField] private Vector3 OffSetTargetPosition = new Vector3(0, 2, -4);
 
     public bool GetLookAtPlayer() {
         return LookAtPlayer;
     }
-    public Vector3 GetOffsetPosition() {
-        return OffsetPosition;
+    public Vector3 GetOffSetTargetPosition() {
+        return OffSetTargetPosition;
     } 
 }
