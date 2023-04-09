@@ -6,14 +6,15 @@ using U3DT.Library;
 using System.Collections.Generic;
 
 public class PlayerMotionInputHandler : Character {
-    [SerializeField] private PlayerControls controls = new PlayerControls();
-
+    [SerializeField] private PlayerControls Controls = new PlayerControls();
+    [SerializeField] private MouseLook MouseControl = new MouseLook();
 
     //Code Generated from U3DT Player Template; https://github.com/Anton-Stechman/U3DTools/tree/main
     private void Awake() {
         // execute on awake (before game start)
         Initialize();
-        controls.UpdateControlsConfig();
+        Controls.UpdateControlsConfig();
+        MouseControl.Initialize(gameObject);
     }
 
     private void Start() {
@@ -28,10 +29,12 @@ public class PlayerMotionInputHandler : Character {
 
     private void Update() {
         // Other
+        RotateThisObject(MouseControl.GetYRotation());
     }
 
     private void LateUpdate() {
         // camera
+        MouseControl.CameraUpdate();
     }
     private Vector3 Direction() {
         Vector3 NewDirection = ForwardDirection();
