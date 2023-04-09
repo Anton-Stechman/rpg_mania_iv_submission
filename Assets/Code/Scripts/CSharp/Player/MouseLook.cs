@@ -48,12 +48,10 @@ public class MouseLook {
         CheckSettings();
         CurrentY = GetAxis('y');
         Vector3 CameraCurrentPos = PlayerCamera.position;
-        if(CameraPosition.GetLookAtPlayer()) {
-            PlayerCamera.LookAt(GetPosition());
-        }
         // FollowObject.transform.position = SetPosition();
         FollowObject.transform.localPosition = CameraPosition.GetOffsetPosition();
         PlayerCamera.position = Vector3.Lerp(CameraCurrentPos, FollowObject.transform.position, CameraFollowDampner);
+        CameraVerticalRotation();
     }
     public float GetYRotation() {
         if(!GameSettings.isPaused()) {
@@ -83,12 +81,19 @@ public class MouseLook {
         }
         return target.position;
     }
+    private void CameraVerticalRotation() {
+        //https://answers.unity.com/questions/862380/how-to-slow-down-transformlookat.html
+        PlayerCamera.Rotate(PlayerCamera.right * CurrentY * Time.deltaTime);
+        if(CameraPosition.GetLookAtPlayer()) {
+            PlayerCamera.LookAt(GetPosition());
+        }
+    }
 }
 [System.Serializable]
 public class CameraFollow {
     [SerializeField] private bool LookAtPlayer = true;
 
-    [SerializeField] private Vector3 OffsetPosition = new Vector3(0,2,-4);
+    [SerializeField] private Vector3 OffsetPosition = new Vector3(0, 2, -4);
 
     public bool GetLookAtPlayer() {
         return LookAtPlayer;
