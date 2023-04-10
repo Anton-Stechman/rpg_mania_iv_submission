@@ -12,12 +12,12 @@ public class MouseLook {
     [SerializeField] private CameraFollow CameraPosition = new CameraFollow();
     [SerializeField] [Range(50.00f,150.00f)] private float xSensitivity = 50.00f;
     [SerializeField] [Range(50.00f,150.00f)] private float ySensitivity = 50.00f;
-    [SerializeField] [Range(0.01f, 2.50f)] private float CameraFollowDampner = 1.20f;
+    [SerializeField] [Range(0.001f, 2.50f)] private float CameraFollowDampner = 0.015f;
     private float CurrentX = new float();
     private float CurrentY = new float();
     private Transform PlayerTransform;
     private GameObject PlayerObject;
-    [SerializeField] private GameObject FollowObject;
+    [SerializeField] private Transform FollowObject;
 
     public void Initialize(GameObject player) {
         GameSettings.SetSensitivity(xSensitivity, 'x');
@@ -33,7 +33,7 @@ public class MouseLook {
 
         PlayerObject = player;
         PlayerTransform = PlayerObject.transform;
-        FollowObject.transform.position = SetTargetPosition();
+        FollowObject.localPosition = SetTargetPosition();
     }
 
     private void CheckSettings() {
@@ -48,10 +48,8 @@ public class MouseLook {
         CheckSettings();
         CurrentY = GetAxis('y');
         Vector3 CameraCurrentPos = PlayerCamera.position;
-        // FollowObject.transform.position = SetTargetPosition();
-        FollowObject.transform.localPosition = CameraPosition.GetOffSetTargetPosition();
-        PlayerCamera.position = Vector3.Lerp(CameraCurrentPos, FollowObject.transform.position, CameraFollowDampner);
-        CameraVerticalRotation();
+        PlayerCamera.position = Vector3.Lerp(CameraCurrentPos, FollowObject.transform.position, CameraFollowDampner * Time.deltaTime);
+        LookAtPlayer();
     }
     public float GetYRotation() {
         if(!GameSettings.isPaused()) {
@@ -84,9 +82,7 @@ public class MouseLook {
         }
         return target.position;
     }
-    private void CameraVerticalRotation() {
-        //https://answers.unity.com/questions/862380/how-to-slow-down-transformlookat.html
-        PlayerCamera.Rotate(PlayerCamera.right * CurrentY * Time.deltaTime);
+    private void LookAtPlayer() {
         if(CameraPosition.GetLookAtPlayer()) {
             PlayerCamera.LookAt(GetTargetPosition());
         }

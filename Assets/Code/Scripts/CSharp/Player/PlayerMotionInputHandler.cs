@@ -14,11 +14,11 @@ public class PlayerMotionInputHandler : Character {
         // execute on awake (before game start)
         Initialize();
         Controls.UpdateControlsConfig();
-        MouseControl.Initialize(gameObject);
     }
 
     private void Start() {
         // execute on game start
+        MouseControl.Initialize(gameObject);
     }
 
     private void FixedUpdate() {
