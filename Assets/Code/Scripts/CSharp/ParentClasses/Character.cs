@@ -11,6 +11,7 @@ public class Character : MonoBehaviour {
     [SerializeField] [Range(0,10)] private int PlayerMassFactor = 5;
     [SerializeField] [Range(0,30)] private float PlayerAccelerationFactor = 5.00f;
     [SerializeField] [Range(0,15)] private float PlayerMaxVelocity = 2.50f;
+    [SerializeField] [Range(0.00f, 1.50f)] private float SmoothRotation = 0.0075f;
 
     [HideInInspector] public Vector3 MoveDirection = new Vector3();
     private float CurrentVelocity = 0.00f;
@@ -68,6 +69,15 @@ public class Character : MonoBehaviour {
             }
         }
         return new Vector3();
+    }
+    public void RotateThisObject(float yRotation) {
+        /*Quaternion CurrentRotation = transform.rotation;
+        float xRot = CurrentRotation.x;
+        float yRot = CurrentRotation.y * yRotation;
+        float zRot = CurrentRotation.z;
+        Quaternion NextRotation = new Quaternion(xRot, yRot, zRot, 0);
+        transform.rotation = Quaternion.Slerp(CurrentRotation, NextRotation, SmoothRotation);*/
+        gameObject.transform.Rotate(transform.up * yRotation * Time.deltaTime);
     }
 }
 
