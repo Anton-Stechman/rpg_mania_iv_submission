@@ -118,6 +118,18 @@ namespace U3DT {
                 }
                 return ReturnVector;
             }
+            public int Clamp(int value, int maxValue) {
+                if(value >= maxValue) {
+                    return maxValue;
+                }
+                return value;
+            }
+            public float Clamp(float value, float maxValue) {
+                if(value >= maxValue) {
+                    return maxValue;
+                }
+                return value;
+            }
         }
     }
 }
